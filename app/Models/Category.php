@@ -8,6 +8,15 @@ class Category extends Model
 {
     protected $guarded = [];
 
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($category) {
+            $category->slug = str_slug($category->name);
+        });
+    }
+
     public function parent_category()
     {
         return $this->belongsTo(__CLASS__);
@@ -18,8 +27,9 @@ class Category extends Model
         return $this->hasMany(__CLASS__);
     }
 
-    public function products()
+    public function products(){
         return $this->hasMany(Product::class);
     }
+    
 
 }

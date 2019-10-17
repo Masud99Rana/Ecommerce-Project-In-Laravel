@@ -12,10 +12,6 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.layouts.master');
 });
 
-
-Route::get('users/{id}', function() {
-    
-});

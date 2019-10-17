@@ -5,11 +5,11 @@
                 <div class="col-sm-8 col-md-7 py-4">
                     <h4 class="text-white">Categories</h4>
                     <ul class="list-unstyled">
-                        {{-- @foreach($categories as $category)
+                        @foreach($categories as $category)
                             <li>
                                 <a href="{{ $category->slug }}">{{ $category->name }}</a>
                             </li>
-                        @endforeach --}}
+                        @endforeach
                     </ul>
                 </div>
 

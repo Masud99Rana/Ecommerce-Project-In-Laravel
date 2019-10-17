@@ -57,8 +57,8 @@ return [
 
         'my' => [
             'driver' => 'local',
-            'root' => public_path('media'),
-            'url' => public_path('media'),
+            'root' => base_path().'/public/media',
+            'url' => env('FORMEDIA').'media',
             'visibility' => 'public',
         ],
 

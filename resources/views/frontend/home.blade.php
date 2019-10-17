@@ -11,7 +11,8 @@
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
                             <a href="{{ route('product.details', $product->slug) }}">
-                                <img class="card-img-top" data-src="holder.js/100px225?theme&bg=eceeee&text=Thumbnail" {{-- src="{{ $product->getFirstMediaUrl('products') }}" --}} alt="{{ $product->title }}">
+                                <img class="card-img-top" data-src="holder.js/100px225?theme&bg=eceeee&text=Thumbnail" alt="{{ $product->title }}">
+                                {{-- <img class="card-img-top" src="{{ $product->getFirstMediaUrl('products') }}" alt="{{ $product->title }}"> --}}
                             </a>
 
                             <div class="card-body">

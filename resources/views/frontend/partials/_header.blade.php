@@ -26,7 +26,7 @@
                             <li><a href="{{-- {{ route('logout') }} --}}" class="text-white">Logout</a></li>
                         @endauth
 
-                        <li><a href="{{-- {{ route('cart.show') }} --}}" class="text-white">Cart</a></li>
+                        <li><a href="{{ route('cart.show') }}" class="text-white">Cart</a></li>
                     </ul>
                 </div>
             </div>
@@ -35,7 +35,7 @@
 
     <div class="navbar navbar-dark bg-dark shadow-sm">
         <div class="container d-flex justify-content-between">
-            <a href="{{-- {{ route('frontend.home') }} --}}" class="navbar-brand d-flex align-items-center">
+            <a href="{{ route('frontend.home') }}" class="navbar-brand d-flex align-items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                      stroke-linejoin="round" class="mr-2">
                     <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>

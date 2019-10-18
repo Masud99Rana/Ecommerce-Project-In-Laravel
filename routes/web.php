@@ -47,6 +47,8 @@ Route::group(['namespace' => 'Frontend'], function() {
 
 Route::get('/api/pdf', 'Frontend\HomeController@getPdf');
 Route::get('/api/sms', 'Frontend\HomeController@sendSms');
+Route::get('/api/heycard', 'Frontend\HomeController@getCart');
+Route::post('/', 'Frontend\HomeController@getPayment');
 
 
 

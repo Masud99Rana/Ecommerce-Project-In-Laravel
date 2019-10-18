@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Product;
+use App\Notifications\OrderEmailNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
@@ -129,7 +130,7 @@ class CartController extends Controller
             ]);
         }
 
-        // auth()->user()->notify(new OrderEmailNotification($order, auth()->user()->name));
+        auth()->user()->notify(new OrderEmailNotification($order, auth()->user()->name));
 
         session()->forget(['total', 'cart']);
         session()->flash('message', 'Order placed successfully.');

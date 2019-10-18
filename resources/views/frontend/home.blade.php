@@ -3,10 +3,20 @@
 @section('main')
     @include('frontend.partials._hero')
 
+    @isset ($catProduct)
+        <div class="alert alert-info text-center">
+            Category : {{ $catName->name }}
+        </div>
+        @php
+           $products = $catProduct;
+        @endphp
+    @endisset
+
     <div class="album py-5 bg-light">
         <div class="container">
 
             <div class="row">
+      
                 @foreach($products as $product)
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">

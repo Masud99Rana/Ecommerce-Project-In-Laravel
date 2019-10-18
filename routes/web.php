@@ -14,6 +14,7 @@
 Route::group(['namespace' => 'Frontend'], function() {
 
 	Route::get('/', 'HomeController@showHomePage')->name('frontend.home');
+    Route::get('/category/{slug}', 'HomeController@showCategoryProduct')->name('product.category');
 	Route::get('/product/{slug}', 'ProductController@showDetails')->name('product.details');
 
 
@@ -44,6 +45,6 @@ Route::group(['namespace' => 'Frontend'], function() {
 
 });
 
-
+Route::get('/api/pdf', 'Frontend\HomeController@getPdf');
 
 

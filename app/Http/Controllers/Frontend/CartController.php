@@ -92,7 +92,7 @@ class CartController extends Controller
         return view('frontend.checkout', $data);
     }
 
-        public function processOrder()
+    public function processOrder()
     {
         $validator = Validator::make(request()->all(), [
             'customer_name' => 'required',
@@ -134,7 +134,7 @@ class CartController extends Controller
         session()->forget(['total', 'cart']);
         session()->flash('message', 'Order placed successfully.');
 
-        // return redirect()->route('order.details', $order->id);
+        return redirect()->route('order.details', $order->id);
     }
 
     public function showOrder($id)

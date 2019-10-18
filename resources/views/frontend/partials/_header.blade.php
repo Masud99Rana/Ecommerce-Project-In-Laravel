@@ -22,7 +22,7 @@
                         @endguest
 
                         @auth()
-                            <li><a href="{{-- {{ route('profile') }} --}}" class="text-white">My Profile</a></li>
+                            <li><a href="{{ route('profile') }}" class="text-white">My Profile</a></li>
                             <li><a href="{{ route('logout') }}" class="text-white">Logout</a></li>
                         @endauth
 

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\User;
 use App\Notifications\RegistrationEmailNotification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -17,7 +19,8 @@ class AuthController extends Controller
     }
 
     public function processLogin()
-    {
+    {   
+
         $validator = Validator::make(request()->all(), [
             'email' => 'required|email',
             'password' => 'required',
@@ -33,7 +36,8 @@ class AuthController extends Controller
             if (auth()->user()->email_verified_at === null) {
                 $this->setError('Your account is not activated.');
 
-                return redirect()->route('login');
+                // return redirect()->route('login');
+                return redirect()->intended();
             }
 
             $this->setSuccess('User logged in.');

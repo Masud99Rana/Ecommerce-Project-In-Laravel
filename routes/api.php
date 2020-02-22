@@ -16,3 +16,18 @@ use Illuminate\Http\Request;
 // Route::group(['prefix' => 'v1', 'namespace' => 'Api'], function(){
 // 	Route::resource('/users', 'UsersController');
 // });
+
+Route::group(['namespace' => 'Api', 'prefix' => 'v1'], function () {
+    Route::get('/', function () {
+        return response()->json([
+            'success' => true,
+            'message' => 'Welcome to Ecommerce API',
+            'data' => [],
+        ]);
+    });
+
+    Route::get('/cart', 'CartController@getCart');
+    Route::post('/cart', 'CartController@addToCart');
+    Route::post('/cart/remove', 'CartController@removeFromCart');
+    Route::post('/cart/clear', 'CartController@clearCart');
+});

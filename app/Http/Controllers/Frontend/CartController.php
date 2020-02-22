@@ -16,12 +16,15 @@ class CartController extends Controller
     {	
     	// session()->flush();
     	
-    	$data = [];
-    	$data['total'] = 0;
-    	$data['cart'] = session()->has('cart') ? session()->get('cart') : [];
-    	$data['total'] = array_sum(array_column($data['cart'], 'total_price'));
+    // All data pass via ajax    
+    	// $data = [];
+    	// $data['total'] = 0;
+    	// $data['cart'] = session()->has('cart') ? session()->get('cart') : [];
+    	// $data['total'] = array_sum(array_column($data['cart'], 'total_price'));
 
-        return view('frontend.cart',$data);
+     //    return view('frontend.cart',$data);
+     //    
+        return view('frontend.cart');
     }
 
     public function addToCart(Request $request)

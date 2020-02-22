@@ -11,12 +11,13 @@
                 {{ session()->get('message') }}
             </div>
         @endif
-
-        <div class="alert alert-info" v-if="cart.length === 0">
+    @if (!count($cart))
+        <div class="alert alert-info" >
             Please add some products to your cart.
         </div>
+    @else
 
-        <table class="table table-bordered" v-else>
+        <table class="table table-bordered">
             <thead>
             <tr>
                 <td>Serial</td>
@@ -28,34 +29,40 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="product,id in cart">
-                <td>@{{ id }}</td>
-                <td>@{{ product.title }}</td>
-                <td>BDT @{{ product.unit_price }}</td>
-                <td>@{{ product.quantity }}</td>
-                <td>BDT @{{ product.total_price }}</td>
+
+        @php $i=1; @endphp
+
+        @foreach ($cart as $key => $product)
+            <tr>
+                <td>{{ $i++ }}</td>
+                <td>{{ $product['title'] }}</td>
+                <td>BDT {{ number_format($product['unit_price'],0)}}</td>
+                <td><input type="number" name="quantity" value="{{ $product['quantity'] }}"></td>
+                <td>BDT {{ number_format($product['total_price'],0) }}</td>
                 <td>
-                    <form>
-                        <button type="submit" @click.prevent="removeFromCart(id)" class="btn btn-lg btn-outline-secondary">
-                            Remove
-                        </button>
+                    <form action="{{ route('cart.remove') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $key }}">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary">Remove</button>
                     </form>
                 </td>
             </tr>
+        @endforeach
 
             <tr>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td>Total</td>
-                <td>BDT @{{ total }}</td>
+                <td>BDT {{ number_format($total,0) }}</td>
                 <td></td>
             </tr>
             </tbody>
         </table>
 
-        <a @click.prevent="clearCart()" class="btn btn-danger">Clear Cart</a>
+        <a href="{{ route('cart.clear') }}" class="btn btn-danger">Clear Cart</a>
         <a href="{{ route('checkout') }}" class="btn btn-success">Checkout</a>
+    @endif
 
     </div>
 @stop

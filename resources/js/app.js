@@ -6,7 +6,10 @@
 
 require('./bootstrap');
 
-// window.Vue = require('vue');
+window.Vue = require('vue');
+
+window.axios = require('axios');
+window.swal = require('sweetalert');
 
 /**
  * The following block of code may be used to automatically register your
@@ -27,6 +30,70 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// const app = new Vue({
-//     el: '#app',
-// });
+const app = new Vue({
+    el: '#app',
+    data: {
+        cart: [],
+        total: 0
+    },
+    created: function () {
+        this.getCart();
+    },
+    methods: {
+        addToCart: function (productId) {
+            axios.post('/api/v1/cart', {
+                product_id: productId
+            })
+                .then(function (response) {
+                    swal({
+                        title: "Success!",
+                        text: response.data.message,
+                        icon: "success"
+                    });
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        },
+        removeFromCart: function (productId) {
+            axios.post('/api/v1/cart/remove', {
+                product_id: productId
+            })
+                .then((response) => {
+                    swal({
+                        title: "Success!",
+                        text: response.data.message,
+                        icon: "success"
+                    });
+                    this.getCart();
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        },
+        getCart: function () {
+            axios.get('/api/v1/cart')
+                .then((response) => {
+                    this.cart = response.data.data.cart;
+                    this.total = response.data.data.total;
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+        clearCart: function () {
+            axios.post('/api/v1/cart/clear')
+                .then((response) => {
+                    swal({
+                        title: "Success!",
+                        text: response.data.message,
+                        icon: "success"
+                    });
+                    this.getCart();
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+    }
+});

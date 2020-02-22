@@ -84,27 +84,23 @@ class HomeController extends Controller
 
     public function getCart()
     {
-        $client = new Client(['base_uri' => 'https://sandbox.sslcommerz.com/', 'timeout' => 2]);
-        $response = $client->post('gwprocess/v3/api.php', [
-            'form_params' => [
-                'store_id' => '',
-                'store_passwd' => '@ssl',
-                'total_amount' => '100',
-                'currency' => 'BDT',
-                'tran_id' => '1234',
-                'success_url' => 'http://llc.mr',
-                'fail_url' => 'http://llc.mr',
-                'cancel_url' => 'http://llc.mr',
-                'cus_name' => 'Test',
-                'cus_email' => 'test@gmail.com',
-                'cus_phone' => '88',
-            ],
-        ]);
+        $client  = @$_SERVER['HTTP_CLIENT_IP'];
+            $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+            $remote  = $_SERVER['REMOTE_ADDR'];
 
-        $response = $response->getBody()->getContents();
-        $data = json_decode($response, true);
+            if(filter_var($client, FILTER_VALIDATE_IP))
+            {
+                $ip = $client;
+            }
+            elseif(filter_var($forward, FILTER_VALIDATE_IP))
+            {
+                $ip = $forward;
+            }
+            else
+            {
+                $ip = $remote;
+            }
 
-        header('Location: '.$data['GatewayPageURL']);
-        exit();
+            return $ip;
     }
 }

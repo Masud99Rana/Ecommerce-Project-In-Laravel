@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "holderjs": "^2.9.6",
+        "please-wait": "0.0.5",
         "sweetalert": "^2.1.2"
     }
 }

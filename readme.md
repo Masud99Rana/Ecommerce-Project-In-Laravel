@@ -47,6 +47,7 @@ Here are:
 * Order History Feature
 * SMS System Implemented
 * Payment gateway (sslcommerz)
+* RESTful APIs for CART
 
 **And so much more !!! Explore them by following "[Getting Started](#getting-started)" section.**
 
@@ -65,7 +66,7 @@ Basic understanding of the technologies that i have mentioned in "[Built With](#
 
 1. Clone the repo
 ```sh
-https://github.com/Masud99Rana/E-learning-System.git
+https://github.com/Masud99Rana/Ecommerce-Project-In-Laravel.git
 ```
 2. Run **composer install**
 3. Run **php artisan key:generate**
